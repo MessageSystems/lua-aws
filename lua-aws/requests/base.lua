@@ -42,7 +42,6 @@ return class.AWS_Request {
                 elseif (resp.status >= 200 and resp.status < 300) then
 			return true, self:extract_data(resp)
 		else
-			self._api:log("lua-aws detected AWS error response:", resp.status, resp.body)
 			return false, self:extract_error(resp)
 		end
 	end,
