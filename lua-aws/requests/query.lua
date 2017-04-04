@@ -61,9 +61,12 @@ return class.AWS_QueryRequest.extends(Request) {
 				message = data.Message
 			}
 		else
-			return {
-				code = resp.status,
-				message = false
+                        -- Nothing could be parsed from the response body.
+                        -- Falling back to using the HTTP status code as
+                        -- the "code" and the HTTP response body as the "message"
+                        return {
+				code = tostring(resp.status),
+				message = tostring(body)
 			}
 		end
 	end,
